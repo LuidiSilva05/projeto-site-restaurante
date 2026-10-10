@@ -1,0 +1,13 @@
+id_venda,data,produto,categoria,canal,quantidade,preco_unitario
+1,2026-07-01,X-Bacon,Lanche,Delivery,1,29.90
+2,2026-07-01,X-Bacon,Lanche,Balcão,1,29.90
+3,2026-07-01,Milkshake,Sobremesa,Balcão,1,16.90
+4,2026-07-02,Refrigerante,Bebida,Balcão,3,6.90
+5,2026-07-03,X-Bacon,Lanche,Delivery,2,29.90
+6,2026-07-10,Batata frita,Acompanhamento,Delivery,2,12.90
+7,2026-08-02,X-Salada,Lanche,Balcão,1,27.90
+8,2026-08-06,Milkshake,Sobremesa,Delivery,2,16.90
+9,2026-08-15,Refrigerante,Bebida,Balcão,2,6.90
+10,2026-09-01,X-Bacon,Lanche,Delivery,1,29.90
+11,2026-09-12,Batata frita,Acompanhamento,Balcão,1,12.90
+12,2026-09-22,X-Salada,Lanche,Delivery,2,27.90

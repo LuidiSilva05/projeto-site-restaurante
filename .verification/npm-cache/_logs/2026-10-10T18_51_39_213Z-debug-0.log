@@ -1,0 +1,61 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.19.0
+2 info using node@v24.21.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\.npmrc
+5 silly config load:file:C:\Users\IADADOS\.npmrc
+6 silly config load:file:C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\etc\npmrc
+7 verbose title npm install playwright
+8 verbose argv "install" "--prefix" ".verification" "playwright" "--offline" "false" "--prefer-online" "--cache" ".verification/npm-cache"
+9 verbose logfile logs-max:10 dir:C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\npm-cache\_logs\2026-10-10T18_51_39_213Z-
+10 verbose logfile C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\npm-cache\_logs\2026-10-10T18_51_39_213Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly install-scripts no package.json at prefix Could not read package.json: Error: ENOENT: no such file or directory, open 'C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\package.json'
+13 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+14 http fetch GET https://registry.npmjs.org/npm attempt 1 failed with ECONNREFUSED
+15 silly idealTree buildDeps
+16 silly fetch manifest playwright@*
+17 silly packumentCache full:https://registry.npmjs.org/playwright cache-miss
+18 http fetch GET https://registry.npmjs.org/playwright attempt 1 failed with ECONNREFUSED
+19 http fetch GET https://registry.npmjs.org/npm attempt 2 failed with ECONNREFUSED
+20 http fetch GET https://registry.npmjs.org/playwright attempt 2 failed with ECONNREFUSED
+21 http fetch GET https://registry.npmjs.org/npm attempt 3 failed with ECONNREFUSED
+22 http fetch GET https://registry.npmjs.org/playwright attempt 3 failed with ECONNREFUSED
+23 silly placeDep ROOT playwright@ OK for:  want: *
+24 verbose type system
+25 verbose stack FetchError: request to https://registry.npmjs.org/playwright failed, reason: connect ECONNREFUSED 127.0.0.1:9
+25 verbose stack     at ClientRequest.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\minipass-fetch\lib\index.js:130:14)
+25 verbose stack     at ClientRequest.emit (node:events:514:28)
+25 verbose stack     at emitErrorEvent (node:_http_client:114:11)
+25 verbose stack     at _destroy (node:_http_client:1167:9)
+25 verbose stack     at onSocketNT (node:_http_client:1188:5)
+25 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:91:21)
+26 error code ECONNREFUSED
+27 error syscall connect
+28 error errno ECONNREFUSED
+29 error FetchError: request to https://registry.npmjs.org/playwright failed, reason: connect ECONNREFUSED 127.0.0.1:9
+29 error     at ClientRequest.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\minipass-fetch\lib\index.js:130:14)
+29 error     at ClientRequest.emit (node:events:514:28)
+29 error     at emitErrorEvent (node:_http_client:114:11)
+29 error     at _destroy (node:_http_client:1167:9)
+29 error     at onSocketNT (node:_http_client:1188:5)
+29 error     at process.processTicksAndRejections (node:internal/process/task_queues:91:21) {
+29 error   code: 'ECONNREFUSED',
+29 error   errno: 'ECONNREFUSED',
+29 error   syscall: 'connect',
+29 error   address: '127.0.0.1',
+29 error   port: 9,
+29 error   type: 'system',
+29 error   requiredBy: '.'
+29 error }
+30 error
+30 error If you are behind a proxy, please make sure that the 'proxy' config is set properly.  See: 'npm help config'
+31 silly unfinished npm timer reify 1791658301121
+32 silly unfinished npm timer reify:loadTrees 1791658301126
+33 verbose cwd C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria
+34 verbose os Windows_NT 10.0.26200
+35 verbose node v24.21.0
+36 verbose npm  v11.19.0
+37 verbose exit 1
+38 verbose code 1
+39 error A complete log of this run can be found in: C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\npm-cache\_logs\2026-10-10T18_51_39_213Z-debug-0.log

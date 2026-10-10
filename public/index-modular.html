@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a192f">
+  <title>Gestão | Portal executivo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script defer src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script defer src="data.js"></script>
+  <script defer src="core.js"></script>
+  <script defer src="login.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#dashboard">Ir para o conteúdo</a>
+  <section id="loginView" class="login-view" aria-label="Acesso ao portal">
+    <div class="login-editorial">
+      <a class="brand brand-light" href="#"><span class="monogram">G</span><span>GESTÃO<small>INTELIGÊNCIA GASTRONÔMICA</small></span></a>
+      <div class="login-statement"><p class="eyebrow">PERSPECTIVA. CONTROLE. DECISÃO.</p><h1>Uma visão mais clara.<br>Um negócio mais forte.</h1><p>Dados organizados, relatórios completos e informação para conduzir o próximo passo.</p></div>
+      <img class="login-photo" src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Hambúrguer artesanal em fotografia gastronômica">
+      <span class="photo-caption">PORTAL EXECUTIVO / VISÃO INTEGRADA</span>
+    </div>
+    <div class="login-form-area">
+      <div class="login-form-card">
+        <p class="eyebrow">ÁREA DO CLIENTE</p><h2>Acesso ao portal</h2><p class="muted">Selecione uma conta de demonstração para explorar a plataforma.</p>
+        <form id="loginForm">
+          <label for="loginEmail">E-mail</label><input id="loginEmail" type="email" autocomplete="username" required value="diretor@empresa.com.br">
+          <label for="loginPassword">Senha</label><div class="password-field"><input id="loginPassword" type="password" autocomplete="current-password" required minlength="8"><button id="togglePassword" type="button" aria-label="Mostrar senha"><i data-lucide="eye"></i></button></div>
+          <div class="login-options"><label class="check-label"><input id="rememberMe" type="checkbox"> Lembrar-me por 7 dias</label><button id="recoverPassword" type="button" class="text-button">Esqueci a senha</button></div>
+          <button class="button primary full" type="submit">Entrar no portal <i data-lucide="arrow-right"></i></button>
+          <p id="loginStatus" role="status" class="form-status"></p>
+        </form>
+        <div class="demo-accounts"><span class="eyebrow">CONTAS DE DEMONSTRAÇÃO</span><div class="role-buttons"><button type="button" data-account="admin" aria-pressed="true">Diretor</button><button type="button" data-account="cliente" aria-pressed="false">Financeiro</button><button type="button" data-account="auditor" aria-pressed="false">Auditor</button></div><p>Senha das contas: <code>Demonstracao2026!</code></p></div>
+        <div class="sso-buttons"><span class="small muted">Simular SSO</span><button type="button" data-sso="Google Workspace">Google Workspace</button><button type="button" data-sso="Microsoft Entra / SAML">Microsoft / SAML</button></div>
+        <p id="securityStatus" class="small muted"></p>
+        <p class="disclosure"><i data-lucide="info"></i> Acesso simulado para apresentação. Os perfis controlam a interface; esta versão não protege dados confidenciais.</p>
+      </div>
+      <footer>Gestão · Portal executivo de demonstração</footer>
+    </div>
+  </section>
+
+  <div id="appView" hidden>
+    <aside class="sidebar">
+      <a href="#dashboard" class="brand brand-light"><span class="monogram">G</span><span>GESTÃO<small>PORTAL EXECUTIVO</small></span></a>
+      <span class="nav-label">ESPAÇO DE TRABALHO</span>
+      <nav aria-label="Menu principal">
+        <a class="active" href="#dashboard"><i data-lucide="layout-dashboard"></i> Visão geral</a>
+        <a href="#analytics"><i data-lucide="chart-no-axes-combined"></i> Análise de desempenho</a>
+        <a href="#records"><i data-lucide="table-2"></i> Base de dados <span id="navCount"></span></a>
+        <a href="#reports"><i data-lucide="files"></i> Relatórios executivos</a>
+        <a href="#audit"><i data-lucide="clipboard-check"></i> Qualidade e auditoria</a>
+      </nav>
+      <div class="sidebar-note"><i data-lucide="folder-check"></i><strong>Informação que acompanha<br>suas decisões.</strong><p>Todos os registros da base,<br>em uma visão organizada.</p></div>
+      <div class="sidebar-footer"><span class="avatar" id="userInitials">AD</span><div><strong id="userName">Administrador</strong><small id="userRole">Demonstração</small></div><button id="logoutButton" class="icon-button" aria-label="Sair do portal"><i data-lucide="log-out"></i></button></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar"><p>Portal executivo <span>/</span> Visão geral</p><div><span class="session-label"><i data-lucide="user-round"></i> <span id="sessionRole">Administrador</span></span><span class="demo-tag">Ambiente demonstrativo</span></div></header>
+      <main id="dashboard" tabindex="-1">
+        <section class="page-heading"><div><p class="eyebrow">INTELIGÊNCIA DE NEGÓCIOS</p><h1>Visão executiva</h1><p class="muted">Os números do seu negócio. O contexto para decidir.</p></div><a href="#reports" class="button primary"><i data-lucide="file-down"></i> Central de relatórios</a></section>
+        <section class="editorial-banner">
+          <div><span class="eyebrow">DA INFORMAÇÃO À ESTRATÉGIA</span><h2>Seu cardápio.<br>Uma visão de negócio.</h2><p>Da cozinha aos resultados: acompanhe receitas, produtos e canais em uma visão completa.</p><a href="#records">Explorar a base completa <i data-lucide="arrow-up-right"></i></a></div>
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Hambúrguer artesanal com queijo e vegetais" fetchpriority="high">
+          <span class="banner-caption">GASTRONOMIA &amp; RESULTADOS</span>
+        </section>
+        <section class="source-bar panel" aria-label="Origem dos dados">
+          <div><i data-lucide="database"></i><div><label for="datasetSelect">Base em análise</label><select id="datasetSelect"><option value="original">Base original · hamburgueria</option><option value="corporativo">Demonstração B2B · fictícia</option></select></div></div>
+          <p id="sourceSummary" role="status">Carregando registros…</p>
+          <button id="importButton" class="button outline"><i data-lucide="upload"></i> Importar CSV</button><input id="csvInput" type="file" accept=".csv,text/csv" hidden>
+        </section>
+        <p id="appStatus" role="status" class="app-status"></p>
+        <section class="filters panel" aria-label="Filtros de análise">
+          <div class="filter-title"><i data-lucide="sliders-horizontal"></i><strong>Refinar análise</strong><button id="clearFilters" class="text-button">Limpar filtros</button></div>
+          <div class="filter-grid">
+            <div><label for="startDate">Data inicial</label><input id="startDate" type="date"></div>
+            <div><label for="endDate">Data final</label><input id="endDate" type="date"></div>
+            <div><label for="categoryFilter">Categoria</label><select id="categoryFilter"></select></div>
+            <div><label for="groupFilter" id="groupLabel">Canal</label><select id="groupFilter"></select></div>
+            <div><label for="statusFilter">Status do contrato</label><select id="statusFilter"></select></div>
+            <div><label for="companyFilter">Empresa parceira</label><select id="companyFilter"></select></div>
+            <div><label for="minValue">Receita mínima (R$)</label><input id="minValue" type="number" min="0" step="0.01" placeholder="Sem mínimo"></div>
+            <div><label for="maxValue">Receita máxima (R$)</label><input id="maxValue" type="number" min="0" step="0.01" placeholder="Sem máximo"></div>
+          </div>
+          <p id="filterNotice" class="small muted"></p>
+        </section>
+        <section class="kpi-grid" aria-label="Indicadores financeiros">
+          <article class="kpi"><div><span>Faturamento total</span><i data-lucide="wallet"></i></div><strong id="totalRevenue">—</strong><small>Receita das linhas filtradas</small></article>
+          <article class="kpi"><div><span>Vendas únicas</span><i data-lucide="receipt-text"></i></div><strong id="salesCount">—</strong><small>Contagem de IDs distintos</small></article>
+          <article class="kpi"><div><span>Unidades vendidas</span><i data-lucide="boxes"></i></div><strong id="unitsCount">—</strong><small>Soma das quantidades</small></article>
+          <article class="kpi"><div><span>Ticket médio</span><i data-lucide="chart-column"></i></div><strong id="averageTicket">—</strong><small>Faturamento ÷ vendas únicas</small></article>
+        </section>
+        <section class="secondary-metrics panel" aria-label="Indicadores operacionais">
+          <div><span>Margem bruta</span><strong id="grossMargin">—</strong></div><div><span>Contratos ativos</span><strong id="activeContracts">—</strong></div><div><span>Conversão B2B</span><strong id="conversion">—</strong></div><div><span>Atendimento médio</span><strong id="averageWait">—</strong></div><p>Margem disponível com custo_unitario preenchido. Ausência de dados não significa zero.</p>
+        </section>
+        <section id="analytics" class="section-block">
+          <div class="section-heading"><div><span class="eyebrow">DESEMPENHO</span><h2>Resultados em perspectiva</h2></div><span id="analysisCount" class="muted small"></span></div>
+          <div class="chart-grid">
+            <article class="panel chart-panel wide"><h3>Evolução mensal</h3><p class="muted small">Faturamento por mês · R$</p><div class="chart-wrap"><canvas id="monthlyChart" role="img" aria-label="Faturamento mensal"></canvas></div></article>
+            <article class="panel chart-panel"><h3 id="comparisonTitle">Receita por categoria</h3><p class="muted small" id="comparisonSubtitle">Comparação de faturamento · R$</p><div class="chart-wrap"><canvas id="categoryChart" role="img" aria-label="Comparação de receita"></canvas></div></article>
+            <article class="panel chart-panel"><h3 id="groupChartTitle">Receita por canal</h3><p class="muted small">Comparação de faturamento · R$</p><div class="chart-wrap"><canvas id="groupChart" role="img" aria-label="Receita por canal ou região"></canvas></div></article>
+            <article class="panel chart-panel"><h3 id="mixTitle">Volume × faturamento</h3><p class="muted small">Unidades no eixo horizontal · receita no vertical</p><div class="chart-wrap"><canvas id="mixChart" role="img" aria-label="Comparação de volume e faturamento"></canvas></div></article>
+            <article class="panel executive-card"><span class="eyebrow">LEITURA EXECUTIVA</span><h3>O recorte em síntese</h3><p id="executiveSummary"></p><div class="summary-foot"><i data-lucide="info"></i> Resumo calculado a partir da seleção atual.</div></article>
+          </div>
+        </section>
+        <section id="copilot" class="section-block panel copilot-panel"><div class="section-heading"><div><span class="eyebrow">ASSISTENTE EXECUTIVO</span><h2>Análises para a diretoria</h2><p class="muted small">Análise automática local baseada em cálculos, sem modelo de IA conectado.</p></div><button id="analyzeButton" class="button primary"><i data-lucide="scan-text"></i> Analisar tendências</button></div><div id="copilotOutput" class="copilot-output" aria-live="polite"></div><form id="copilotForm"><label for="copilotInput">Pergunte sobre receita, categorias, margem ou região</label><div class="chat-input"><input id="copilotInput" required maxlength="500" placeholder="Qual categoria tem maior receita?"><button class="button outline" type="submit">Analisar pergunta</button></div></form></section>
+        <section id="records" class="section-block panel records-panel">
+          <div class="table-heading"><div><span class="eyebrow">REGISTROS</span><h2>Base de dados completa</h2><p id="recordCount" class="muted small"></p></div><div class="search-field"><label for="tableSearch">Busca global</label><div><i data-lucide="search"></i><input id="tableSearch" type="search" placeholder="Pesquisar em todas as colunas"></div></div></div>
+          <p class="small muted">A pesquisa também atualiza os indicadores e gráficos. Use a rolagem horizontal para consultar todas as colunas.</p>
+          <details class="column-picker"><summary>Escolher colunas visíveis</summary><div id="columnChoices"></div></details>
+          <div class="table-scroll" tabindex="0" aria-label="Tabela com rolagem horizontal"><table><thead id="tableHead"></thead><tbody id="salesTable"></tbody></table></div>
+          <div id="emptyState" class="empty" hidden><i data-lucide="search-x"></i><h3>Nenhum registro encontrado</h3><p>Revise o período, os filtros ou a pesquisa.</p></div>
+          <div class="pagination"><span id="pageSummary"></span><div><label for="pageSize">Por página</label><select id="pageSize"><option>10</option><option selected>50</option><option>100</option><option>500</option><option value="all">Todos</option></select><button id="prevPage" class="icon-button" aria-label="Página anterior"><i data-lucide="chevron-left"></i></button><span id="pageNumber"></span><button id="nextPage" class="icon-button" aria-label="Próxima página"><i data-lucide="chevron-right"></i></button></div></div>
+        </section>
+        <section id="reports" class="section-block">
+          <div class="section-heading"><div><span class="eyebrow">DOCUMENTOS</span><h2>Central de relatórios</h2></div><div><label for="reportScope">Escopo do relatório</label><select id="reportScope"><option value="all">Base completa</option><option value="filtered">Recorte filtrado</option></select></div></div>
+          <div class="report-grid">
+            <article class="panel report-card"><i data-lucide="file-spreadsheet"></i><h3>Planilha gerencial</h3><p>Resumo, dados completos, recorte, agrupamentos e ocorrências de validação em abas separadas.</p><button id="exportExcel" class="button primary">Baixar Excel <i data-lucide="download"></i></button></article>
+            <article class="panel report-card"><i data-lucide="file-text"></i><h3>Relatório executivo</h3><p>Indicadores, resumo, gráficos e todas as linhas do escopo escolhido em uma versão para impressão.</p><button id="exportPdf" class="button outline">Imprimir / salvar PDF <i data-lucide="printer"></i></button></article>
+            <article class="panel report-card"><i data-lucide="table-properties"></i><h3>Dados para auditoria</h3><p>CSV com todas as colunas e registros do escopo escolhido. Exportação independente da paginação.</p><button id="exportCsv" class="button outline">Exportar CSV <i data-lucide="download"></i></button></article>
+          </div><p id="exportStatus" class="small muted" role="status"></p>
+        </section>
+        <section id="audit" class="section-block panel audit-panel"><div class="section-heading"><div><span class="eyebrow">RASTREABILIDADE</span><h2>Qualidade dos dados</h2></div><button id="exportAudit" class="button outline"><i data-lucide="clipboard-list"></i> Exportar ocorrências</button></div><p id="auditSummary"></p><details><summary>Consultar motivos e registros</summary><div id="auditDetails"></div></details></section>
+        <section class="editorial-grid" aria-label="Fotografias ilustrativas de alimentos">
+          <article><img loading="lazy" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Hambúrguer artesanal"><div><span class="eyebrow">FOTOGRAFIA ILUSTRATIVA</span><h3>Hambúrgueres artesanais</h3></div></article>
+          <article><img loading="lazy" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Porção de batatas fritas"><div><span class="eyebrow">FOTOGRAFIA ILUSTRATIVA</span><h3>Acompanhamentos</h3></div></article>
+          <article><img loading="lazy" src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Sorvete servido como sobremesa"><div><span class="eyebrow">FOTOGRAFIA ILUSTRATIVA</span><h3>Sobremesas</h3></div></article>
+        </section>
+        <footer class="page-footer"><span>Gestão · Portal executivo</span><span>Protótipo corporativo · dados processados neste navegador</span></footer>
+      </main>
+    </div>
+  </div>
+  <dialog id="recoveryDialog"><h2>Recuperação de acesso</h2><p>Esta versão usa contas demonstrativas. Selecione seu perfil na tela de login e use a senha <code>Demonstracao2026!</code>.</p><p>Nenhum e-mail é enviado. A recuperação por e-mail requer um serviço de autenticação.</p><button id="closeRecovery" class="button primary">Voltar ao login</button></dialog>
+  <section id="printReport" aria-label="Relatório para impressão"></section>
+  <noscript>Ative o JavaScript para acessar o portal e analisar os dados.</noscript>
+</body>
+</html>

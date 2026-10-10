@@ -1,0 +1,56 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.19.0
+2 info using node@v24.21.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\.npmrc
+5 silly config load:file:C:\Users\IADADOS\.npmrc
+6 silly config load:file:C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\etc\npmrc
+7 verbose title npm install playwright
+8 verbose argv "install" "--prefix" ".verification" "playwright" "--registry" "https://registry.npmjs.org" "--offline" "false" "--prefer-online" "--fetch-retries" "0" "--fetch-timeout" "15000" "--cache" ".verification/npm-cache"
+9 verbose logfile logs-max:10 dir:C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\npm-cache\_logs\2026-10-10T19_01_18_507Z-
+10 verbose logfile C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\npm-cache\_logs\2026-10-10T19_01_18_507Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly install-scripts no package.json at prefix Could not read package.json: Error: ENOENT: no such file or directory, open 'C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\package.json'
+13 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+14 silly idealTree buildDeps
+15 silly fetch manifest playwright@*
+16 silly packumentCache full:https://registry.npmjs.org/playwright cache-miss
+17 http fetch GET https://registry.npmjs.org/playwright attempt 1 failed with ECONNREFUSED
+18 silly placeDep ROOT playwright@ OK for:  want: *
+19 verbose type system
+20 verbose stack FetchError: request to https://registry.npmjs.org/playwright failed, reason: connect ECONNREFUSED 127.0.0.1:9
+20 verbose stack     at ClientRequest.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\minipass-fetch\lib\index.js:130:14)
+20 verbose stack     at ClientRequest.emit (node:events:514:28)
+20 verbose stack     at emitErrorEvent (node:_http_client:114:11)
+20 verbose stack     at _destroy (node:_http_client:1167:9)
+20 verbose stack     at onSocketNT (node:_http_client:1188:5)
+20 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:91:21)
+21 error code ECONNREFUSED
+22 error syscall connect
+23 error errno ECONNREFUSED
+24 error FetchError: request to https://registry.npmjs.org/playwright failed, reason: connect ECONNREFUSED 127.0.0.1:9
+24 error     at ClientRequest.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\minipass-fetch\lib\index.js:130:14)
+24 error     at ClientRequest.emit (node:events:514:28)
+24 error     at emitErrorEvent (node:_http_client:114:11)
+24 error     at _destroy (node:_http_client:1167:9)
+24 error     at onSocketNT (node:_http_client:1188:5)
+24 error     at process.processTicksAndRejections (node:internal/process/task_queues:91:21) {
+24 error   code: 'ECONNREFUSED',
+24 error   errno: 'ECONNREFUSED',
+24 error   syscall: 'connect',
+24 error   address: '127.0.0.1',
+24 error   port: 9,
+24 error   type: 'system',
+24 error   requiredBy: '.'
+24 error }
+25 error
+25 error If you are behind a proxy, please make sure that the 'proxy' config is set properly.  See: 'npm help config'
+26 silly unfinished npm timer reify 1791658879348
+27 silly unfinished npm timer reify:loadTrees 1791658879351
+28 verbose cwd C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria
+29 verbose os Windows_NT 10.0.26200
+30 verbose node v24.21.0
+31 verbose npm  v11.19.0
+32 verbose exit 1
+33 verbose code 1
+34 error A complete log of this run can be found in: C:\Users\IADADOS\Documents\Projeto_Analise_Hamburgueria\.verification\npm-cache\_logs\2026-10-10T19_01_18_507Z-debug-0.log
